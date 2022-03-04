@@ -9,7 +9,7 @@ jobs:
           name: Installing AWS CLI
           command: sudo apt-get update
             sudo apt-get install python3.7
-            sudo pip3 install awsebcli --upgrade
+            sudo pip install awsebcli --upgrade --user
       - run: cd ./back  && npm install && npm start
       - run: cd ./front && npm install && npm run build
       - run: aws s3 sync ./back s3://circleci-123
