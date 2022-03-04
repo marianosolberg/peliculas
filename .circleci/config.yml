@@ -1,0 +1,20 @@
+version: 2.1
+jobs:
+  build_deploy:
+    machine:
+      image: ubuntu-2004:202010-01
+    steps:
+      - checkout
+      - run:
+          name: Installing AWS CLI
+          command: sudo apt-get update
+            sudo apt install python3-pip
+            sudo pip3 install awsebcli --upgrade
+      - run: cd ./back  && npm install && npm start
+      - run: cd ./front && npm install && npm run build
+      - run: aws s3 sync ./back s3://circleci-123
+workflows:
+  version: 2
+  execute_bulk:
+    jobs:
+      - build_deploy
