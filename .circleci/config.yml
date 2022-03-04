@@ -14,7 +14,6 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run: cd ./back  && npm install && npm start
       - run: cd ./front && npm install && npm run build
       - run: aws s3 sync ./back s3://circleci-123
 workflows:
