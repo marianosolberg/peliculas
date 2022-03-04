@@ -13,7 +13,7 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
     steps:
-      - config
+      - checkout
       - run:
           name: Installing AWS CLI
           command: sudo apt-get update
