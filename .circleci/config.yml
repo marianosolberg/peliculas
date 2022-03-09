@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@2.0
 jobs:
   build_deploy:
     machine:
@@ -7,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Installing AWS CLI
-          command: sudo apt install python2-pip python-dev python-socks
+          command: sudo apt install python2-pip python-dev python-socks --allow
       - run: cd ./front && npm install && npm run build
       - run: aws s3 sync ./back s3://circleci-123
 workflows:
