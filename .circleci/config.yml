@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Installing AWS CLI
-          command: sudo apt install python2-pip python-dev python-socks --allow
+          command: sudo apt install python3
       - run: cd ./front && npm install && npm run build
       - run: aws s3 sync ./back s3://circleci-123
 workflows:
