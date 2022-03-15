@@ -2,18 +2,24 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@2.0
 jobs:
+  aws-cli:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/install
+      - aws-cli/configure:
+          profile-name: example
+
   build_deploy:
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run:
-          name: Installing AWS CLI
-          command: sudo apt install python3
       - run: cd ./front && npm install && npm run build
       - run: aws s3 sync ./back s3://circleci-123
 workflows:
   version: 2
   execute_bulk:
     jobs:
+      - aws-cli
       - build_deploy
