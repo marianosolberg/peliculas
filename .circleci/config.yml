@@ -19,7 +19,8 @@ jobs:
       - run: aws s3 sync ./back s3://circleci-123
 workflows:
   version: 2
-  execute_bulk:
+  aws-cli:
     jobs:
-      - aws-cli
+      - aws-cli:
+          context: aws
       - build_deploy
