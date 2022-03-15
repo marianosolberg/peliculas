@@ -19,7 +19,7 @@ jobs:
       - run: aws s3 sync ./back s3://circleci-123
 workflows:
   version: 2
-  aws-cli:
+  install-aws:
     jobs:
       - install-aws:
           context: aws
